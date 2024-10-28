@@ -21,13 +21,13 @@ class LandingPage {
       .getByText("Quero entrar na fila!")
       .click();
   }
-  async expectHasToastText(message) {
+  async checkHasToastText(message) {
     const toast = await this.page.locator(".toast");
     await expect(toast).toHaveText(message);
     await expect(toast).not.toBeVisible({ timeout: 5000 });
   }
 
-  async expectHasAlertText(text) {
+  async checkHasAlertText(text) {
     const alert = await this.page.locator(".alert");
     await expect(alert).toHaveText(text);
   }

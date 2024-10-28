@@ -17,7 +17,7 @@ test("Should register a lead in a waiting list", async ({ page }) => {
     "marcosfromrio@protonmail.com"
   );
 
-  await landingPage.expectHasToastText(/Agradecemos/);
+  await landingPage.checkHasToastText(/Agradecemos/);
 });
 
 /* negative tests */
@@ -27,7 +27,7 @@ test("Shouldn't register with empty name", async ({ page }) => {
   await landingPage.openLeadModal();
   await landingPage.submitLeadForm("", "marcosfromrio@protonmail.com");
 
-  await landingPage.expectHasAlertText(/Campo obrigatório/);
+  await landingPage.checkHasAlertText(/Campo obrigatório/);
 });
 
 test("Shouldn't register with empty mail", async ({ page }) => {
@@ -35,7 +35,7 @@ test("Shouldn't register with empty mail", async ({ page }) => {
   await landingPage.openLeadModal();
   await landingPage.submitLeadForm("marcosfromrio", "");
 
-  await landingPage.expectHasAlertText(/Campo obrigatório/);
+  await landingPage.checkHasAlertText(/Campo obrigatório/);
 });
 
 test("Shouldn't register with empty data", async ({ page }) => {
@@ -43,7 +43,7 @@ test("Shouldn't register with empty data", async ({ page }) => {
   await landingPage.openLeadModal();
   await landingPage.submitLeadForm("", "");
 
-  await landingPage.expectHasAlertText([
+  await landingPage.checkHasAlertText([
     /Campo obrigatório/,
     /Campo obrigatório/,
   ]);
@@ -55,5 +55,5 @@ test("Shouldn't register with wrong mail waiting list", async ({ page }) => {
   await landingPage.openLeadModal();
   await landingPage.submitLeadForm("marcosfromrio", "marcosfromrio.wrong");
 
-  await landingPage.expectHasAlertText(/Email incorreto/);
+  await landingPage.checkHasAlertText(/Email incorreto/);
 });
