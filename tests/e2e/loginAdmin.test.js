@@ -22,3 +22,15 @@ test("Shouldn't login with wrong pass", async ({ page }) => {
   await loginPage.submitLoginForm("admin@zombieplus.com", "wrongPassword");
   await toast.checkHasText(/Ocorreu um erro/);
 });
+
+test("Shouldn't login with empty mail", async ({ page }) => {
+  await loginPage.open();
+  await loginPage.submitLoginForm("", "wrongPassword");
+  await loginPage.checkAlertMailHasText(/Campo obrigatório/);
+});
+
+test("Shouldn't login with empty password", async ({ page }) => {
+  await loginPage.open();
+  await loginPage.submitLoginForm("marcosfromrio@protonmail.com", "");
+  await loginPage.checkAlertPasswordHasText(/Campo obrigatório/);
+});

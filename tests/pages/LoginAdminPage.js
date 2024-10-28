@@ -16,10 +16,20 @@ class LoginPage {
     await this.page.getByPlaceholder("Senha").fill(password);
     await this.page.getByText("Entrar").click();
   }
-  q;
+
   async checkLoggedIn() {
     await this.page.waitForLoadState("domcontentloaded");
     await expect(this.page).toHaveURL(/\/admin\/movies/);
+  }
+
+  async checkAlertMailHasText(text) {
+    const alert = this.page.locator(".email-alert");
+    await expect(alert).toHaveText(text);
+  }
+
+  async checkAlertPasswordHasText(text) {
+    const alert = this.page.locator(".password-alert");
+    await expect(alert).toHaveText(text);
   }
 }
 
