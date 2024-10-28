@@ -1,0 +1,19 @@
+{
+  "name": "pwz",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "pw:test": "npx playwright test",
+    "pw:test:ui": "npx playwright test --ui",
+    "pw:test:debug": "npx playwright test --debug",
+    "pw:test:headed": "npx playwright test --headed"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@playwright/test": "^1.48.1",
+    "@types/node": "^22.8.0"
+  }
+}
