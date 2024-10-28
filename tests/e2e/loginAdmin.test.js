@@ -1,5 +1,5 @@
 const { test } = require("@playwright/test");
-const LoginAdminPage = require("../pages/LoginAdminPage");
+const LoginAdminPage = require("../pages/LoginAdmin");
 const { Toast } = require("../pages/Components");
 
 let loginPage, toast;

@@ -1,6 +1,6 @@
 // @ts-check
 const { test } = require("@playwright/test");
-const LandingPage = require("../pages/LandingPage");
+const LandingPage = require("../pages/Landing");
 const { Toast } = require("../pages/Components");
 
 let landingPage, toast;
