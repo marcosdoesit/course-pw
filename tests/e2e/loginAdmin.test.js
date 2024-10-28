@@ -34,3 +34,9 @@ test("Shouldn't login with empty password", async ({ page }) => {
   await loginPage.submitLoginForm("marcosfromrio@protonmail.com", "");
   await loginPage.checkAlertHasText(/Campo obrigatório/);
 });
+
+test("Shouldn't login with empty data", async ({ page }) => {
+  await loginPage.open();
+  await loginPage.submitLoginForm("", "");
+  await loginPage.checkAlertHasText([/Campo obrigatório/, /Campo obrigatório/]);
+});
