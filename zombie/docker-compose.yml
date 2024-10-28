@@ -1,0 +1,29 @@
+# docker-compose.yml
+name: zombieplus
+services:
+  database:
+    container_name: pgdb
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: "pwd123"
+    ports:
+      - "5432:5432"
+    networks:
+      - skynet
+
+  pgadmin:
+    container_name: pgadmin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: "admin@qax.com"
+      PGADMIN_DEFAULT_PASSWORD: "pwd123"
+    ports:
+      - "16543:80"
+    depends_on:
+      - database
+    networks:
+      - skynet
+
+networks:
+  skynet:
+    driver: bridge
