@@ -26,11 +26,11 @@ test("Shouldn't login with wrong pass", async ({ page }) => {
 test("Shouldn't login with empty mail", async ({ page }) => {
   await loginPage.open();
   await loginPage.submitLoginForm("", "wrongPassword");
-  await loginPage.checkAlertMailHasText(/Campo obrigatório/);
+  await loginPage.checkAlertHasText(/Campo obrigatório/);
 });
 
 test("Shouldn't login with empty password", async ({ page }) => {
   await loginPage.open();
   await loginPage.submitLoginForm("marcosfromrio@protonmail.com", "");
-  await loginPage.checkAlertPasswordHasText(/Campo obrigatório/);
+  await loginPage.checkAlertHasText(/Campo obrigatório/);
 });

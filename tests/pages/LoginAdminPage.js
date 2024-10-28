@@ -22,13 +22,8 @@ class LoginPage {
     await expect(this.page).toHaveURL(/\/admin\/movies/);
   }
 
-  async checkAlertMailHasText(text) {
-    const alert = this.page.locator(".email-alert");
-    await expect(alert).toHaveText(text);
-  }
-
-  async checkAlertPasswordHasText(text) {
-    const alert = this.page.locator(".password-alert");
+  async checkAlertHasText(text) {
+    const alert = this.page.locator("span[class$='alert']");
     await expect(alert).toHaveText(text);
   }
 }
