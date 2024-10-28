@@ -1,19 +1,22 @@
 const { test } = require("@playwright/test");
-const LoginAdminPage = require("../pages/LoginAdmin");
-const { Toast } = require("../pages/Components");
 
-let loginPage, toast;
+const LoginAdminPage = require("../pages/LoginAdmin");
+const MoviesPage = require("../pages/Movies");
+
+const { Toast } = require("../pages/Components");
+let loginPage, toast, moviesPage;
 
 test.beforeEach(async ({ page }) => {
   loginPage = new LoginAdminPage(page);
   toast = new Toast(page);
+  moviesPage = new MoviesPage(page);
 });
 
 /* positive tests */
 test("Should login as admin", async ({ page }) => {
   await loginPage.open();
   await loginPage.submitLoginForm("admin@zombieplus.com", "pwd123");
-  await loginPage.checkLoggedIn();
+  await moviesPage.checkLoggedIn();
 });
 
 /* negative tests */

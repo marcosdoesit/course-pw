@@ -17,11 +17,6 @@ class LoginAdmin {
     await this.page.getByText("Entrar").click();
   }
 
-  async checkLoggedIn() {
-    await this.page.waitForLoadState("domcontentloaded");
-    await expect(this.page).toHaveURL(/\/admin\/movies/);
-  }
-
   async checkAlertHasText(text) {
     const alert = this.page.locator("span[class$='alert']");
     await expect(alert).toHaveText(text);
