@@ -1,11 +1,13 @@
 // @ts-check
 const { test } = require("@playwright/test");
 const LandingPage = require("../pages/LandingPage");
+const { Toast } = require("../pages/Components");
 
-let landingPage;
+let landingPage, toast;
 
 test.beforeEach(async ({ page }) => {
   landingPage = new LandingPage(page);
+  toast = new Toast(page);
 });
 
 /* positive tests */
@@ -17,7 +19,7 @@ test("Should register a lead in a waiting list", async ({ page }) => {
     "marcosfromrio@protonmail.com"
   );
 
-  await landingPage.checkHasToastText(/Agradecemos/);
+  await toast.checkHasText(/Agradecemos/);
 });
 
 /* negative tests */

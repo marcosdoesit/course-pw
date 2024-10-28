@@ -1,10 +1,12 @@
 const { test } = require("@playwright/test");
 const LoginAdminPage = require("../pages/LoginAdminPage");
+const { Toast } = require("../pages/Components");
 
-let loginPage;
+let loginPage, toast;
 
 test.beforeEach(async ({ page }) => {
   loginPage = new LoginAdminPage(page);
+  toast = new Toast(page);
 });
 
 /* positive tests */
@@ -18,5 +20,5 @@ test("Should login as admin", async ({ page }) => {
 test("Shouldn't login with wrong pass", async ({ page }) => {
   await loginPage.open();
   await loginPage.submitLoginForm("admin@zombieplus.com", "wrongPassword");
-  await loginPage.checkHasToastText(/Ocorreu um erro/);
+  await toast.checkHasText(/Ocorreu um erro/);
 });
