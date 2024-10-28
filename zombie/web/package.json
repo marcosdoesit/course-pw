@@ -1,0 +1,18 @@
+{
+  "name": "zombieplus-web",
+  "version": "1.0.0",
+  "description": "Zombie+ Webapp",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npx serve -s build"
+  },
+  "keywords": [
+    "zombieplus",
+    "qax"
+  ],
+  "author": "Fernando Papito",
+  "license": "ISC",
+  "dependencies": {
+    "serve": "^14.2.1"
+  }
+}
