@@ -17,12 +17,20 @@ test("Should login as admin", async ({ page }) => {
 });
 
 /* negative tests */
+// wrong tests
 test("Shouldn't login with wrong pass", async ({ page }) => {
   await loginPage.open();
   await loginPage.submitLoginForm("admin@zombieplus.com", "wrongPassword");
   await toast.checkHasText(/Ocorreu um erro/);
 });
 
+test("Shouldn't login with wrong mail", async ({ page }) => {
+  await loginPage.open();
+  await loginPage.submitLoginForm("marcos.mail", "randomPassword");
+  await loginPage.checkAlertHasText(/Email incorreto/);
+});
+
+// empty tests
 test("Shouldn't login with empty mail", async ({ page }) => {
   await loginPage.open();
   await loginPage.submitLoginForm("", "wrongPassword");
