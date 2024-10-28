@@ -2,6 +2,7 @@
 const { test } = require("@playwright/test");
 const LandingPage = require("../pages/Landing");
 const { Toast } = require("../pages/Components");
+const { faker } = require("@faker-js/faker");
 
 let landingPage, toast;
 
@@ -14,10 +15,10 @@ test.beforeEach(async ({ page }) => {
 test("Should register a lead in a waiting list", async ({ page }) => {
   await landingPage.open();
   await landingPage.openLeadModal();
-  await landingPage.submitLeadForm(
-    "marcosfromrio",
-    "marcosfromrio@protonmail.com"
-  );
+  const leadName = faker.person.fullName();
+  const leadEmail = faker.internet.email();
+
+  await landingPage.submitLeadForm(leadName, leadEmail);
 
   await toast.checkHasText(/Agradecemos/);
 });
