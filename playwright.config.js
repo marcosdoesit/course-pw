@@ -1,6 +1,16 @@
 // @ts-check
 const { defineConfig, devices } = require("@playwright/test");
 
+const tsconfigPaths = require("tsconfig-paths");
+
+tsconfigPaths.register({
+  baseUrl: ".",
+  paths: {
+    "@pages/*": ["./tests/pages/*"],
+    "@components/*": ["./tests/components/*"],
+  },
+});
+
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
