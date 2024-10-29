@@ -1,7 +1,7 @@
 const { test } = require("@playwright/test");
 
 const { LoginAdminPage } = require("@pages/admin");
-const { MoviesPage } = require("@pages/Movies");
+const { MoviesPage } = require("@pages/admin/Movies");
 
 const { ToastComponent } = require("@components/Toast");
 
