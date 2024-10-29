@@ -11,16 +11,31 @@ test.beforeEach(async ({ page }) => {
   toast = new ToastComponent(page);
 });
 
-/* positive tests */
-test("Should register a lead in a waiting list", async ({ page }) => {
-  await landingPage.open();
-  await landingPage.openLeadModal();
+test.describe("Lead registration", () => {
+  test.describe.configure({ mode: "serial" });
+
   const leadName = faker.person.fullName();
   const leadEmail = faker.internet.email();
 
-  await landingPage.submitLeadForm(leadName, leadEmail);
+  /* positive tests */
+  test("Should register a lead in a waiting list", async ({ page }) => {
+    await landingPage.open();
+    await landingPage.openLeadModal();
 
-  await toast.checkHasText(/Agradecemos/);
+    await landingPage.submitLeadForm(leadName, leadEmail);
+
+    await toast.checkHasText(/Agradecemos/);
+  });
+
+  /* negative tests */
+  test("Shouldn't register a lead with existing mail", async ({ page }) => {
+    await landingPage.open();
+    await landingPage.openLeadModal();
+
+    await landingPage.submitLeadForm(leadName, leadEmail);
+
+    await toast.checkHasText(/já está registrado/);
+  });
 });
 
 /* negative tests */
