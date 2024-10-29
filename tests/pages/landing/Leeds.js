@@ -1,6 +1,6 @@
 const { expect } = require("@playwright/test");
 
-class LandingPage {
+export class LandingPage {
   constructor(page) {
     this.page = page;
   }
@@ -28,4 +28,3 @@ class LandingPage {
   }
 }
 
-module.exports = LandingPage;

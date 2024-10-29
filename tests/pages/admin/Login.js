@@ -1,6 +1,6 @@
 const { expect } = require("@playwright/test");
 
-class LoginAdmin {
+export class LoginAdminPage {
   constructor(page) {
     this.page = page;
   }
@@ -22,5 +22,3 @@ class LoginAdmin {
     await expect(alert).toHaveText(text);
   }
 }
-
-module.exports = LoginAdmin;

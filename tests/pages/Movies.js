@@ -1,6 +1,6 @@
 import { expect } from "@playwright/test";
 
-class Movies {
+export class MoviesPage {
   constructor(page) {
     this.page = page;
   }
@@ -11,4 +11,3 @@ class Movies {
   }
 }
 
-module.exports = Movies;

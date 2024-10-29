@@ -1,14 +1,15 @@
 const { test } = require("@playwright/test");
 
-const LoginAdminPage = require("../pages/LoginAdmin");
-const MoviesPage = require("../pages/Movies");
+const { LoginAdminPage } = require("@pages/admin");
+const { MoviesPage } = require("@pages/Movies");
 
-const { Toast } = require("../pages/Components");
+const { ToastComponent } = require("@components/Toast");
+
 let loginPage, toast, moviesPage;
 
 test.beforeEach(async ({ page }) => {
   loginPage = new LoginAdminPage(page);
-  toast = new Toast(page);
+  toast = new ToastComponent(page);
   moviesPage = new MoviesPage(page);
 });
 

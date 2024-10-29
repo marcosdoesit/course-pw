@@ -1,6 +1,6 @@
 const { expect } = require("@playwright/test");
 
-export class Toast {
+export class ToastComponent {
   constructor(page) {
     this.page = page;
   }
