@@ -42,6 +42,10 @@ module.exports = defineConfig({
 
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     // baseURL: process.env.BASE_URL,
+    viewport: { width: 1920, height: 1080 },
+    launchOptions: {
+      args: ['--force-device-scale-factor=1.25'],
+    },
     trace: 'retain-on-failure',
   },
 
