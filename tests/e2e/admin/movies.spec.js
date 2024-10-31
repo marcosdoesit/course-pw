@@ -14,6 +14,8 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('Admin can add a movie', async ({ page }) => {
-  // login
+  await loginPage.open();
+  await loginPage.submitLoginForm();
+  await moviesPage.checkLoggedIn();
 });
 

@@ -9,4 +9,8 @@ export class MoviesPage {
     await this.page.waitForLoadState('domcontentloaded');
     await expect(this.page).toHaveURL(/\/admin\/movies/);
   }
+
+  async create(title, overview, company, releaseYear) {
+
+  }
 }
