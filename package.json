@@ -17,6 +17,7 @@
     "@faker-js/faker": "^9.1.0",
     "@playwright/test": "^1.48.1",
     "@types/node": "^22.8.0",
+    "dotenv": "^16.4.5",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-playwright": "^2.0.0",
     "husky": "^9.1.6",
