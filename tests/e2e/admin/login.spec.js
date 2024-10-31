@@ -28,7 +28,7 @@ test("Shouldn't login with wrong pass", async ({ page }) => {
     'admin@zombieplus.com',
     'wrongPassword'
   );
-  await toast.checkHasText(/Ocorreu um erro/);
+  await toast.checkContainText(/Ocorreu um erro/);
 });
 
 test("Shouldn't login with wrong mail", async ({ page }) => {
