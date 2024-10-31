@@ -26,7 +26,7 @@ test.describe('Lead registration', () => {
 
     await landingPage.submitLeadForm(leadName, leadEmail);
 
-    await toast.checkHasText(/Agradecemos/);
+    await toast.checkContainText(/Agradecemos/);
   });
 
   /* negative tests */
@@ -38,7 +38,7 @@ test.describe('Lead registration', () => {
 
     await landingPage.submitLeadForm(leadName, leadEmail);
 
-    await toast.checkHasText(/já está registrado/);
+    await toast.checkContainText(/já está registrado/);
   });
 });
 
