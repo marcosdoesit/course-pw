@@ -1,10 +1,13 @@
+import { ToastComponent } from '@components/Toast';
 import { expect, Page } from '@playwright/test';
 
 export class MoviesPage {
   private page: Page;
+  private toast: ToastComponent;
 
   constructor(page) {
     this.page = page;
+    this.toast = new ToastComponent(page);
   }
 
   async checkLoggedIn() {
@@ -39,5 +42,9 @@ export class MoviesPage {
         hasText: releaseYear,
       })
       .click();
+
+    await this.page.click('button:has-text("Cadastrar")');
+
+    await this.toast.checkContainText(/sucesso/);
   }
 }
