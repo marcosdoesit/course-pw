@@ -26,13 +26,10 @@ test('Admin can add a movie', async ({ page }) => {
 
   const movie = moviesData.guerra_mundial_z;
 
-  console.log(movie);
   await moviesPage.create(
     movie.title,
     movie.overview,
     movie.company,
     String(movie.releaseYear)
   );
-
-  await page.click('button:has-text("Cadastrar")');
 });
