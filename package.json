@@ -3,10 +3,11 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "pw:test": "npx playwright test",
-    "pw:test:ui": "npx playwright test --ui",
-    "pw:test:debug": "npx playwright test --debug",
-    "pw:test:headed": "npx playwright test --headed"
+    "test": "npx playwright test",
+    "test:ui": "npx playwright test --ui",
+    "test:debug": "npx playwright test --debug",
+    "prettier": "npx prettier . --check --write",
+    "prepare": "husky"
   },
   "keywords": [],
   "author": "",
@@ -16,6 +17,9 @@
     "@faker-js/faker": "^9.1.0",
     "@playwright/test": "^1.48.1",
     "@types/node": "^22.8.0",
+    "eslint-config-prettier": "^9.1.0",
+    "husky": "^9.1.6",
+    "prettier": "^3.3.3",
     "tsconfig-paths": "^4.2.0"
   }
 }

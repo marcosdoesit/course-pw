@@ -1,0 +1,19 @@
+# Diretórios de dependências e build
+node_modules
+dist
+build
+
+# Arquivos de configuração e logs
+*.log
+coverage
+.next
+.cache
+
+# Arquivos de configuração de ferramentas
+*.lock
+.env
+
+# Outros a./rquivos e diretórios específicos do projeto
+public
+static
+zombie

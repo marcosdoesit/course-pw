@@ -4,24 +4,27 @@
 
 ```js
 // getByTestId: get an element by its data-testid value
-await page.getByTestId("name").fill("marcos");
+await page.getByTestId('name').fill('marcos');
 
 // locator: get an element by its selector (like query selector)
 // #name get by id = name
-await page.locator("#name").fill("marcos");
+await page.locator('#name').fill('marcos');
 
 // getting by placeholder text
-await page.getByPlaceholder("Seu nome completo");
+await page.getByPlaceholder('Seu nome completo');
 
 // getting input by prop and value:
 await page.locator("input[placeholder='fill your name']");
-await page.locator("input[name=name]");
+await page.locator('input[name=name]');
 
 // Locating elements that contain given text.
-await page.getByText("Quero entrar na fila!").click();
+await page.getByText('Quero entrar na fila!').click();
 
 // Nesting locating
-await page.getByTestId("modal").getByText("Quero entrar na fila!").click();
+await page
+  .getByTestId('modal')
+  .getByText('Quero entrar na fila!')
+  .click();
 ```
 
 # Zombie+ (Regression Tests)

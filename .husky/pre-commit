@@ -1,0 +1,6 @@
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+echo "Running pre-commit hook..."
+
+prettier $(git diff --name-only --diff-filter=ACMR | sed 's| |\\ |g') --write --ignore-unknown
