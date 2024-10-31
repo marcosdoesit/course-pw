@@ -8,7 +8,7 @@ const dbConfig = {
   port: 5432,
 };
 
-export const execQuery = async (query: string) => {
+export const runQuery = async (query: string) => {
   try {
     const pool = new Pool(dbConfig);
     const client = await pool.connect();
