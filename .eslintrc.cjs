@@ -1,4 +1,11 @@
+import playwright from 'eslint-plugin-playwright';
+
 module.exports = {
+  ...playwright.configs['flat/recommended'],
+  files: ['tests/**'],
+  rules: {
+    ...playwright.configs['flat/recommended'].rules,
+  },
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/recommended',

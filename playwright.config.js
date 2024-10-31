@@ -1,6 +1,5 @@
 // @ts-check
-const { defineConfig, devices } = require('@playwright/test');
-
+import { defineConfig, devices } from '@playwright/test';
 const tsconfigPaths = require('tsconfig-paths');
 
 tsconfigPaths.register({
