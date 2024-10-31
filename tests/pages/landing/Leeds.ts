@@ -1,7 +1,9 @@
-const { expect } = require('@playwright/test');
+import { Page, expect } from '@playwright/test';
 
 export class LandingPage {
-  constructor(page) {
+  private readonly page: Page;
+
+  constructor(page: Page) {
     this.page = page;
   }
 
@@ -12,10 +14,10 @@ export class LandingPage {
     await this.page
       .getByRole('button', { name: /Aperte o play/ })
       .click();
-    const modal = await this.page.getByTestId('modal');
+    const modal = this.page.getByTestId('modal');
     await expect(modal.isVisible()).toBeTruthy();
   }
-  async submitLeadForm(name, email) {
+  async submitLeadForm(name?: string, email?: string) {
     await this.page.locator('#name').fill(name);
     await this.page.locator('#email').fill(email);
     await this.page
@@ -24,8 +26,8 @@ export class LandingPage {
       .click();
   }
 
-  async checkHasAlertText(text) {
-    const alert = await this.page.locator('.alert');
+  async checkHasAlertText(text: string | RegExp | RegExp[]) {
+    const alert = this.page.locator('.alert');
     await expect(alert).toHaveText(text);
   }
 }

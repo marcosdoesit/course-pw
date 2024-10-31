@@ -2,10 +2,10 @@ import { ToastComponent } from '@components/Toast';
 import { expect, Page } from '@playwright/test';
 
 export class MoviesPage {
-  private page: Page;
-  private toast: ToastComponent;
+  private readonly page: Page;
+  private readonly toast: ToastComponent;
 
-  constructor(page) {
+  constructor(page: Page) {
     this.page = page;
     this.toast = new ToastComponent(page);
   }
