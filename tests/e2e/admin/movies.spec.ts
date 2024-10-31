@@ -5,7 +5,9 @@ import { MoviesPage } from '@pages/admin/Movies';
 
 import { ToastComponent } from '@components/Toast';
 
-import moviesData from '@support/fixtures/movies.json';
+import { Movie } from '@support/types';
+
+const moviesData: Movie = require('@support/fixtures/movies.json');
 
 let loginPage: LoginAdminPage,
   toast: ToastComponent,
@@ -22,15 +24,15 @@ test('Admin can add a movie', async ({ page }) => {
   await loginPage.submitLoginForm();
   await moviesPage.checkLoggedIn();
 
-  const movie = moviesData[0];
+  const movie = moviesData.guerra_mundial_z;
 
+  console.log(movie);
   await moviesPage.create(
     movie.title,
-    movie.description,
+    movie.overview,
     movie.company,
-    movie.releaseYear
+    String(movie.releaseYear)
   );
 
   await page.click('button:has-text("Cadastrar")');
 });
-

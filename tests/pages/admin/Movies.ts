@@ -8,7 +8,7 @@ export class MoviesPage {
   }
 
   async checkLoggedIn() {
-    await this.page.waitForLoadState('domcontentloaded');
+    await this.page.waitForURL(/\/admin\/movies/);
     await expect(this.page).toHaveURL(/\/admin\/movies/);
   }
 
