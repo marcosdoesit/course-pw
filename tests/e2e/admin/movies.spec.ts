@@ -6,6 +6,7 @@ import { MoviesPage } from '@pages/admin/Movies';
 import { ToastComponent } from '@components/Toast';
 
 import { Movie } from '@support/types';
+import { runQuery } from '@support/db';
 
 const moviesData: Movie = require('@support/fixtures/movies.json');
 
@@ -20,11 +21,12 @@ test.beforeEach(async ({ page }) => {
 });
 
 test('Admin can add a movie', async ({ page }) => {
+  const movie = moviesData.guerra_mundial_z;
+  await runQuery(`DELETE FROM movies WHERE title = '${movie.title}'`);
+
   await loginPage.open();
   await loginPage.submitLoginForm();
   await moviesPage.checkLoggedIn();
-
-  const movie = moviesData.guerra_mundial_z;
 
   await moviesPage.create(
     movie.title,
