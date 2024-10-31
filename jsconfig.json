@@ -1,9 +1,11 @@
 {
   "compilerOptions": {
+    "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
       "@pages/*": ["./tests/pages/*"],
-      "@components/*": ["./tests/components/*"]
+      "@components/*": ["./tests/components/*"],
+      "@support/*": ["./tests/support/*"]
     }
   }
 }

@@ -10,6 +10,7 @@ tsconfigPaths.register({
   paths: {
     '@pages/*': ['./tests/pages/*'],
     '@components/*': ['./tests/components/*'],
+    '@support/*': ['./tests/support/*'],
   },
 });
 
