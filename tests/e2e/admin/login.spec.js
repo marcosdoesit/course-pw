@@ -16,7 +16,7 @@ test.beforeEach(async ({ page }) => {
 /* positive tests */
 test('Should login as admin', async ({ page }) => {
   await loginPage.open();
-  await loginPage.submitLoginForm('admin@zombieplus.com', 'pwd123');
+  await loginPage.submitLoginForm();
   await moviesPage.checkLoggedIn();
 });
 
