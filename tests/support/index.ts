@@ -17,13 +17,14 @@ const test = base.extend<{ page: CustomPage }>({
     { page },
     use: (page: CustomPage) => Promise<void>
   ) => {
-    await use({
-      ...page,
-      landing: new LandingPage(page),
-      login: new LoginAdminPage(page),
-      toast: new ToastComponent(page),
-      movies: new MoviesPage(page),
-    });
+    const context: CustomPage = page;
+
+    context['login'] = new LoginAdminPage(page);
+    context['toast'] = new ToastComponent(page);
+    context['movies'] = new MoviesPage(page);
+    context['landing'] = new LandingPage(page);
+
+    await use(context);
   },
 });
 
