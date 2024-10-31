@@ -1,59 +1,49 @@
-import { test } from '@playwright/test';
-import { ToastComponent } from '@components/Toast';
-import { LoginAdminPage } from '@pages/admin';
-import { MoviesPage } from '@pages/admin/Movies';
-
-let loginPage: LoginAdminPage,
-  toast: ToastComponent,
-  moviesPage: MoviesPage;
-
-test.beforeEach(async ({ page }) => {
-  loginPage = new LoginAdminPage(page);
-  toast = new ToastComponent(page);
-  moviesPage = new MoviesPage(page);
-});
+import { test } from '@support/index';
 
 /* positive tests */
 test('Should login as admin', async ({ page }) => {
-  await loginPage.open();
-  await loginPage.submitLoginForm();
-  await moviesPage.checkLoggedIn();
+  await page.login.open();
+  await page.login.submitLoginForm();
+  await page.movies.checkLoggedIn();
 });
 
 /* negative tests */
 // wrong tests
 test("Shouldn't login with wrong pass", async ({ page }) => {
-  await loginPage.open();
-  await loginPage.submitLoginForm(
+  await page.login.open();
+  await page.login.submitLoginForm(
     'admin@zombieplus.com',
     'wrongPassword'
   );
-  await toast.checkContainText(/Ocorreu um erro/);
+  await page.toast.checkContainText(/Ocorreu um erro/);
 });
 
 test("Shouldn't login with wrong mail", async ({ page }) => {
-  await loginPage.open();
-  await loginPage.submitLoginForm('marcos.mail', 'randomPassword');
-  await loginPage.checkAlertHasText(/Email incorreto/);
+  await page.login.open();
+  await page.login.submitLoginForm('marcos.mail', 'randomPassword');
+  await page.login.checkAlertHasText(/Email incorreto/);
 });
 
 // empty tests
 test("Shouldn't login with empty mail", async ({ page }) => {
-  await loginPage.open();
-  await loginPage.submitLoginForm('', 'wrongPassword');
-  await loginPage.checkAlertHasText(/Campo obrigatório/);
+  await page.login.open();
+  await page.login.submitLoginForm('', 'wrongPassword');
+  await page.login.checkAlertHasText(/Campo obrigatório/);
 });
 
 test("Shouldn't login with empty password", async ({ page }) => {
-  await loginPage.open();
-  await loginPage.submitLoginForm('marcosfromrio@protonmail.com', '');
-  await loginPage.checkAlertHasText(/Campo obrigatório/);
+  await page.login.open();
+  await page.login.submitLoginForm(
+    'marcosfromrio@protonmail.com',
+    ''
+  );
+  await page.login.checkAlertHasText(/Campo obrigatório/);
 });
 
 test("Shouldn't login with empty data", async ({ page }) => {
-  await loginPage.open();
-  await loginPage.submitLoginForm('', '');
-  await loginPage.checkAlertHasText([
+  await page.login.open();
+  await page.login.submitLoginForm('', '');
+  await page.login.checkAlertHasText([
     /Campo obrigatório/,
     /Campo obrigatório/,
   ]);
