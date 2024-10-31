@@ -1,4 +1,4 @@
-const { expect } = require("@playwright/test");
+const { expect } = require('@playwright/test');
 
 export class ToastComponent {
   constructor(page) {
@@ -6,7 +6,7 @@ export class ToastComponent {
   }
 
   async checkHasText(message) {
-    const toast = await this.page.locator(".toast");
+    const toast = await this.page.locator('.toast');
     await expect(toast).toHaveText(message);
     await expect(toast).not.toBeVisible({ timeout: 5000 });
   }

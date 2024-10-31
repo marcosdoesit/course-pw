@@ -1,4 +1,4 @@
-import { expect } from "@playwright/test";
+import { expect } from '@playwright/test';
 
 export class MoviesPage {
   constructor(page) {
@@ -6,8 +6,7 @@ export class MoviesPage {
   }
 
   async checkLoggedIn() {
-    await this.page.waitForLoadState("domcontentloaded");
+    await this.page.waitForLoadState('domcontentloaded');
     await expect(this.page).toHaveURL(/\/admin\/movies/);
   }
 }
-

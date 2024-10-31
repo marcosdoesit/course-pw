@@ -1,8 +1,8 @@
 // @ts-check
-const { test } = require("@playwright/test");
-const { LandingPage } = require("@pages/landing");
-const { ToastComponent } = require("@components/Toast");
-const { faker } = require("@faker-js/faker");
+const { test } = require('@playwright/test');
+const { LandingPage } = require('@pages/landing');
+const { ToastComponent } = require('@components/Toast');
+const { faker } = require('@faker-js/faker');
 
 let landingPage, toast;
 
@@ -11,14 +11,16 @@ test.beforeEach(async ({ page }) => {
   toast = new ToastComponent(page);
 });
 
-test.describe("Lead registration", () => {
-  test.describe.configure({ mode: "serial" });
+test.describe('Lead registration', () => {
+  test.describe.configure({ mode: 'serial' });
 
   const leadName = faker.person.fullName();
   const leadEmail = faker.internet.email();
 
   /* positive tests */
-  test("Should register a lead in a waiting list", async ({ page }) => {
+  test('Should register a lead in a waiting list', async ({
+    page,
+  }) => {
     await landingPage.open();
     await landingPage.openLeadModal();
 
@@ -28,7 +30,9 @@ test.describe("Lead registration", () => {
   });
 
   /* negative tests */
-  test("Shouldn't register a lead with existing mail", async ({ page }) => {
+  test("Shouldn't register a lead with existing mail", async ({
+    page,
+  }) => {
     await landingPage.open();
     await landingPage.openLeadModal();
 
@@ -43,7 +47,10 @@ test.describe("Lead registration", () => {
 test("Shouldn't register with empty name", async ({ page }) => {
   await landingPage.open();
   await landingPage.openLeadModal();
-  await landingPage.submitLeadForm("", "marcosfromrio@protonmail.com");
+  await landingPage.submitLeadForm(
+    '',
+    'marcosfromrio@protonmail.com'
+  );
 
   await landingPage.checkHasAlertText(/Campo obrigatório/);
 });
@@ -51,7 +58,7 @@ test("Shouldn't register with empty name", async ({ page }) => {
 test("Shouldn't register with empty mail", async ({ page }) => {
   await landingPage.open();
   await landingPage.openLeadModal();
-  await landingPage.submitLeadForm("marcosfromrio", "");
+  await landingPage.submitLeadForm('marcosfromrio', '');
 
   await landingPage.checkHasAlertText(/Campo obrigatório/);
 });
@@ -59,7 +66,7 @@ test("Shouldn't register with empty mail", async ({ page }) => {
 test("Shouldn't register with empty data", async ({ page }) => {
   await landingPage.open();
   await landingPage.openLeadModal();
-  await landingPage.submitLeadForm("", "");
+  await landingPage.submitLeadForm('', '');
 
   await landingPage.checkHasAlertText([
     /Campo obrigatório/,
@@ -68,10 +75,15 @@ test("Shouldn't register with empty data", async ({ page }) => {
 });
 
 // wrong data tests
-test("Shouldn't register with wrong mail waiting list", async ({ page }) => {
+test("Shouldn't register with wrong mail waiting list", async ({
+  page,
+}) => {
   await landingPage.open();
   await landingPage.openLeadModal();
-  await landingPage.submitLeadForm("marcosfromrio", "marcosfromrio.wrong");
+  await landingPage.submitLeadForm(
+    'marcosfromrio',
+    'marcosfromrio.wrong'
+  );
 
   await landingPage.checkHasAlertText(/Email incorreto/);
 });
