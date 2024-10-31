@@ -11,6 +11,7 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'plugin:@typescript-eslint/stylistic',
     'prettier',
+    'airbnb',
   ],
   parser: '@typescript-eslint/parser',
   plugins: ['@typescript-eslint'],
