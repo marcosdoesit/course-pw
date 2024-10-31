@@ -1,6 +1,5 @@
-// @ts-check
-const { test } = require('@support/index');
-const { faker } = require('@faker-js/faker');
+import { test } from '@support/index';
+import { faker } from '@faker-js/faker';
 
 test.describe('Lead registration', () => {
   test.describe.configure({ mode: 'serial' });
