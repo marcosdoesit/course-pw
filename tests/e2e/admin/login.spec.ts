@@ -1,11 +1,11 @@
-const { test } = require('@playwright/test');
+import { test } from '@playwright/test';
+import { ToastComponent } from '@components/Toast';
+import { LoginAdminPage } from '@pages/admin';
+import { MoviesPage } from '@pages/admin/Movies';
 
-const { LoginAdminPage } = require('@pages/admin');
-const { MoviesPage } = require('@pages/admin/Movies');
-
-const { ToastComponent } = require('@components/Toast');
-
-let loginPage, toast, moviesPage;
+let loginPage: LoginAdminPage,
+  toast: ToastComponent,
+  moviesPage: MoviesPage;
 
 test.beforeEach(async ({ page }) => {
   loginPage = new LoginAdminPage(page);
