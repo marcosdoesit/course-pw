@@ -1,4 +1,4 @@
-import { ToastComponent } from '@components/Toast';
+import { ToastComponent } from '@pages/components/ToastComponent';
 import { expect, Page } from '@playwright/test';
 
 export class MoviesPage {
