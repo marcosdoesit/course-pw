@@ -1,13 +1,14 @@
 import { LoginAdminPage } from '@pages/admin/Login';
-import { BrowserContext, Page } from '@playwright/test';
+import { Page } from '@playwright/test';
 
-export type LoginFixtures = {
-  context: BrowserContext;
-  page: Page;
-  login: LoginAdminPage;
+type LoginFixtures = {
+  login: (
+    { page }: { page: Page },
+    use: (login: LoginAdminPage) => Promise<void>
+  ) => Promise<void>;
 };
 
-const loginFixtures = {
+const loginFixtures: LoginFixtures = {
   login: async ({ page }, use) => {
     const login = new LoginAdminPage(page);
     await use(login);

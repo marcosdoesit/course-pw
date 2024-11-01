@@ -1,14 +1,18 @@
 import { LandingPage } from '@pages/landing/Leeds';
-import { BrowserContext, Page } from '@playwright/test';
+import { Page } from '@playwright/test';
 
-export type LandingFixtures = {
-  context: BrowserContext;
-  page: Page;
-  landing: LandingPage;
+type LandingFixtures = {
+  landing: (
+    { page }: { page: Page },
+    use: (landing: LandingPage) => Promise<void>
+  ) => Promise<void>;
 };
 
-const landingFixtures = {
-  landing: async ({ page }, use) => {
+const landingFixtures: LandingFixtures = {
+  landing: async (
+    { page },
+    use: (landing: LandingPage) => Promise<void>
+  ) => {
     const landing = new LandingPage(page);
     await use(landing);
   },

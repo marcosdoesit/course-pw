@@ -1,15 +1,16 @@
 import { MoviesPage } from '@pages/admin/Movies';
-import { BrowserContext, Page } from '@playwright/test';
+import { Page } from '@playwright/test';
 
-export type MovieFixtures = {
-  context: BrowserContext;
-  page: Page;
-  movies: MoviesPage;
+type MoviesFixtures = {
+  movies: (
+    { page }: { page: Page },
+    use: (movies: MoviesPage) => Promise<void>
+  ) => Promise<void>;
 };
 
-const moviesFixtures = {
+const moviesFixtures: MoviesFixtures = {
   movies: async ({ page }, use) => {
-    const movies = new MoviesPage(page);
+    const movies: MoviesPage = new MoviesPage(page);
     await use(movies);
   },
 };

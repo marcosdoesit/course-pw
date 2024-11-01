@@ -1,6 +1,6 @@
-import { ToastComponent } from '@components/ToastComponent';
 import { LoginAdminPage } from '@pages/admin/Login';
 import { MoviesPage } from '@pages/admin/Movies';
+import { ToastComponent } from '@pages/components/ToastComponent';
 import { LandingPage } from '@pages/landing/Leeds';
 import {
   test as baseTest,
