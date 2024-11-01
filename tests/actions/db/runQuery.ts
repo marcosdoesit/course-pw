@@ -1,12 +1,5 @@
+import { dbConfig } from '@config/dbConfig';
 import { Pool } from 'pg';
-
-const dbConfig = {
-  user: 'postgres',
-  host: 'localhost',
-  database: 'zombie',
-  password: 'pwd123',
-  port: 5432,
-};
 
 export const runQuery = async (query: string) => {
   try {

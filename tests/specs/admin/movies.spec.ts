@@ -1,7 +1,7 @@
+import { runQuery } from '@actions/db/runQuery';
 import { test } from '@contexts/appContexts';
-import { runQuery } from '@support/db';
 
-import moviesData from '@fixtures/data/movies.json' assert { type: 'json' };
+import moviesData from '@fixtures/data/movies.json';
 
 test('Admin can add a movie', async ({ login, movies }) => {
   const movie = moviesData.guerra_mundial_z;
