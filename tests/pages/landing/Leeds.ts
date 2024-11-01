@@ -15,7 +15,7 @@ export class LandingPage {
       .getByRole('button', { name: /Aperte o play/ })
       .click();
     const modal = this.page.getByTestId('modal');
-    await expect(modal.isVisible()).toBeTruthy();
+    expect(modal.isVisible()).toBeTruthy();
   }
   async submitLeadForm(name?: string, email?: string) {
     await this.page.locator('#name').fill(name);
