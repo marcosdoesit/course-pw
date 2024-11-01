@@ -3,9 +3,9 @@ import { MoviesPage } from '@pages/admin/Movies';
 import { ToastComponent } from '@pages/components/ToastComponent';
 import { LandingPage } from '@pages/landing/Leeds';
 import {
-  test as baseTest,
   BrowserContext,
   Page,
+  test as playwrightTest,
 } from '@playwright/test';
 import { landingFixtures } from './landingContext';
 import { loginFixtures } from './loginContext';
@@ -21,7 +21,7 @@ type AppFixtures = {
   landing: LandingPage;
 };
 
-const test = baseTest.extend<AppFixtures>({
+const test = playwrightTest.extend<AppFixtures>({
   ...loginFixtures,
   ...moviesFixtures,
   ...landingFixtures,
