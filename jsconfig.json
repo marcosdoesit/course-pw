@@ -3,9 +3,11 @@
     "resolveJsonModule": true,
     "baseUrl": ".",
     "paths": {
-      "@pages/*": ["./tests/pages/*"],
-      "@components/*": ["./tests/components/*"],
-      "@support/*": ["./tests/support/*"]
+      "@contexts/*": ["tests/contexts/*"],
+      "@fixtures/*": ["tests/fixtures/*"],
+      "@pages/*": ["tests/pages/*"],
+      "@support/*": ["tests/support/*"]
     }
-  }
+  },
+  "include": ["tests/**/*.ts"]
 }
