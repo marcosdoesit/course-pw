@@ -18,3 +18,23 @@ test('Admin can add a movie', async ({ login, movies }) => {
     String(movie.releaseYear)
   );
 });
+
+test('Admin cannot add a movie with empty data', async ({
+  login,
+  movies,
+}) => {
+  await login.open();
+  await login.submitLoginForm();
+
+  await movies.checkLoggedIn();
+
+  await movies.gotoForm();
+  await movies.submit();
+
+  await movies.checkAlertHasText([
+    /informe o título/i,
+    /informe a sinopse/i,
+    /informe a empresa/i,
+    /informe o ano/i,
+  ]);
+});
