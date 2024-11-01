@@ -16,4 +16,3 @@ const moviesFixtures: MoviesFixtures = {
 };
 
 export { moviesFixtures };
-

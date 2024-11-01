@@ -16,4 +16,3 @@ const toastFixtures: ToastFixtures = {
 };
 
 export { toastFixtures };
-

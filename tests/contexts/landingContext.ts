@@ -19,4 +19,3 @@ const landingFixtures: LandingFixtures = {
 };
 
 export { landingFixtures };
-
