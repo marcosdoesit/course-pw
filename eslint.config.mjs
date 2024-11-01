@@ -13,19 +13,19 @@ export default [
     },
   },
   {
-    ...playwright.configs['flat/recommended'],
-    files: ['**/*.{js,mjs,cjs,ts}'],
-    rules: {
-      ...playwright.configs['flat/recommended'].rules,
-      'playwright/expect-expect': 'off',
-    },
-  },
-  {
     languageOptions: {
       globals: globals.builtin,
     },
     plugins: {
       unicorn: eslintPluginUnicorn,
+    },
+  },
+  {
+    ...playwright.configs['flat/recommended'],
+    files: ['**/*.{js,mjs,cjs,ts}'],
+    rules: {
+      ...playwright.configs['flat/recommended'].rules,
+      'playwright/expect-expect': 'off',
     },
   },
   pluginJs.configs.recommended,
