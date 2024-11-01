@@ -1,10 +1,19 @@
 import pluginJs from '@eslint/js';
+import eslintConfigPrettier from 'eslint-config-prettier';
+import playwright from 'eslint-plugin-playwright';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
-  { files: ['**/*.{js,mjs,cjs,ts}'] },
+  {
+    ...playwright.configs['flat/recommended'],
+    files: ['**/*.{js,mjs,cjs,ts}'],
+    rules: {
+      ...playwright.configs['flat/recommended'].rules,
+      'playwright/expect-expect': 'off',
+    },
+  },
   {
     languageOptions: {
       globals: { ...globals.browser, ...globals.node },
@@ -12,4 +21,5 @@ export default [
   },
   pluginJs.configs.recommended,
   ...tseslint.configs.recommended,
+  eslintConfigPrettier,
 ];
