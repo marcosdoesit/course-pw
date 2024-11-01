@@ -15,14 +15,22 @@ export class MoviesPage {
     await expect(this.page).toHaveURL(/\/admin\/movies/);
   }
 
+  async gotoForm() {
+    await this.page.click('a[href*="register"]');
+    await this.page.waitForURL(/register/i);
+  }
+
+  async submit() {
+    await this.page.click('button:has-text("Cadastrar")');
+  }
+
   async create(
     title: string,
     overview: string,
     company: string,
     releaseYear: string
   ) {
-    await this.page.click('a[href*="register"]');
-    await this.page.waitForURL(/register/i);
+    await this.gotoForm();
 
     await this.page.fill('#title', title);
     await this.page.fill('#overview', overview);
@@ -43,8 +51,13 @@ export class MoviesPage {
       })
       .click();
 
-    await this.page.click('button:has-text("Cadastrar")');
+    await this.submit();
 
     await this.toast.checkContainText(/sucesso/);
+  }
+
+  async checkAlertHasText(text: string | RegExp | RegExp[]) {
+    const alert = this.page.locator("span[class$='alert']");
+    await expect(alert).toHaveText(text);
   }
 }
