@@ -1,4 +1,5 @@
 {
+  "plugins": ["prettier-plugin-organize-imports"],
   "semi": true,
   "trailingComma": "es5",
   "singleQuote": true,
@@ -7,5 +8,8 @@
   "endOfLine": "crlf",
   "arrowParens": "always",
   "bracketSpacing": true,
-  "experimentalTernaries": true
+  "experimentalTernaries": true,
+  "importOrder": ["^components/(.*)$", "^[./]"],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
 }
