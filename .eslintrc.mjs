@@ -1,6 +1,6 @@
 import playwright from 'eslint-plugin-playwright';
 
-module.exports = {
+export default {
   ...playwright.configs['flat/recommended'],
   files: ['tests/**'],
   parser: '@typescript-eslint/parser',
@@ -8,6 +8,7 @@ module.exports = {
   parserOptions: {
     project: true,
     tsconfigRootDir: __dirname,
+    sourceType: 'module',
   },
   plugins: ['@typescript-eslint', 'import', 'prettier'],
   'no-duplicate-imports': 'error',
