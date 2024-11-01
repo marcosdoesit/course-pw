@@ -18,4 +18,3 @@ export const runQuery = async (query: string) => {
     console.error('Error running pg query:', error);
   }
 };
-
