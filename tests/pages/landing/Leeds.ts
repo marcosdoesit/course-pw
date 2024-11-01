@@ -10,6 +10,7 @@ export class LandingPage {
   async open() {
     await this.page.goto('http://localhost:3000');
   }
+
   async openLeadModal() {
     await this.page
       .getByRole('button', { name: /Aperte o play/ })
@@ -17,6 +18,7 @@ export class LandingPage {
     const modal = this.page.getByTestId('modal');
     expect(modal.isVisible()).toBeTruthy();
   }
+
   async submitLeadForm(name?: string, email?: string) {
     await this.page.locator('#name').fill(name);
     await this.page.locator('#email').fill(email);
