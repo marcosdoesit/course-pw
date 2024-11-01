@@ -1,6 +1,7 @@
 import pluginJs from '@eslint/js';
 import eslintConfigPrettier from 'eslint-config-prettier';
 import playwright from 'eslint-plugin-playwright';
+import eslintPluginUnicorn from 'eslint-plugin-unicorn';
 import globals from 'globals';
 import tseslint from 'typescript-eslint';
 
@@ -17,6 +18,14 @@ export default [
     rules: {
       ...playwright.configs['flat/recommended'].rules,
       'playwright/expect-expect': 'off',
+    },
+  },
+  {
+    languageOptions: {
+      globals: globals.builtin,
+    },
+    plugins: {
+      unicorn: eslintPluginUnicorn,
     },
   },
   pluginJs.configs.recommended,
