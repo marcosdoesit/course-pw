@@ -1,18 +1,8 @@
 // @ts-check
 import { defineConfig, devices } from '@playwright/test';
-const tsconfigPaths = require('tsconfig-paths');
 import { config } from 'dotenv';
 
 config();
-
-tsconfigPaths.register({
-  baseUrl: '.',
-  paths: {
-    '@pages/*': ['./tests/pages/*'],
-    '@components/*': ['./tests/components/*'],
-    '@support/*': ['./tests/support/*'],
-  },
-});
 
 /**
  * Read environment variables from file.
@@ -23,7 +13,7 @@ tsconfigPaths.register({
 /**
  * @see https://playwright.dev/docs/test-configuration
  */
-module.exports = defineConfig({
+export default defineConfig({
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
