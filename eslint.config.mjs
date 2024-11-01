@@ -7,16 +7,16 @@ import tseslint from 'typescript-eslint';
 /** @type {import('eslint').Linter.Config[]} */
 export default [
   {
+    languageOptions: {
+      globals: { ...globals.browser, ...globals.node },
+    },
+  },
+  {
     ...playwright.configs['flat/recommended'],
     files: ['**/*.{js,mjs,cjs,ts}'],
     rules: {
       ...playwright.configs['flat/recommended'].rules,
       'playwright/expect-expect': 'off',
-    },
-  },
-  {
-    languageOptions: {
-      globals: { ...globals.browser, ...globals.node },
     },
   },
   pluginJs.configs.recommended,
