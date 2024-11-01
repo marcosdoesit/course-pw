@@ -8,8 +8,5 @@
   "endOfLine": "crlf",
   "arrowParens": "always",
   "bracketSpacing": true,
-  "experimentalTernaries": true,
-  "importOrder": ["^components/(.*)$", "^[./]"],
-  "importOrderSeparation": true,
-  "importOrderSortSpecifiers": true
+  "experimentalTernaries": true
 }
