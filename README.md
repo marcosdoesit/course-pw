@@ -1,6 +1,138 @@
-# Project structure
+# Test-PWZ: Playwright Testing Framework for Zombie+
 
-## Contexts
+This project is a comprehensive testing framework built with Playwright to perform automated testing on the Zombie+ application. It includes tests for both the admin panel and the landing page, covering various functionalities such as authentication, movie management, and lead registration.
+
+## Architecture
+
+The project follows a well-structured architecture designed for maintainability and reusability:
+
+### Project Structure
+
+```
+test-pwz/
+├── tests/                    # Main test directory
+│   ├── actions/              # Test actions including auth setup and DB operations
+│   │   ├── auth.setup.ts     # Authentication setup for tests
+│   │   ├── api/              # API interaction actions
+│   │   └── db/               # Database operation actions
+│   ├── config/               # Configuration files
+│   │   └── dbConfig.ts       # Database configuration
+│   ├── contexts/             # Test contexts for different pages
+│   │   ├── appContexts.ts    # Main application context
+│   │   ├── landingContext.ts # Landing page context
+│   │   ├── loginContext.ts   # Login page context
+│   │   ├── moviesContext.ts  # Movies page context
+│   │   └── toastContext.ts   # Toast notifications context
+│   ├── fixtures/             # Test fixtures and test data
+│   │   └── data/             # Test data files
+│   ├── pages/                # Page Object Models
+│   │   ├── admin/            # Admin page objects
+│   │   ├── components/       # Reusable component objects
+│   │   └── landing/          # Landing page objects
+│   ├── specs/                # Test specifications
+│   │   ├── admin/            # Admin panel tests
+│   │   └── landing/          # Landing page tests
+│   └── types/                # TypeScript type definitions
+├── zombie/                   # Zombie+ application (API and webapp for testing)
+│   ├── api/                  # Backend API
+│   ├── web/                  # Frontend web application
+│   └── docker-compose.yml    # Docker configuration for local development
+└── playwright.config.js      # Playwright configuration
+```
+
+### Design Pattern - Page Object Model
+
+This project uses the Page Object Model (POM) design pattern, which separates the test code from the page-specific code. Each page in the application has its own class that encapsulates the elements and actions that can be performed on that page.
+
+### Contexts System
+
+The contexts system is a key architectural feature that helps manage test setup and state. Each context:
+
+1. Initializes specific pages and components
+2. Provides those instances to the tests
+3. Allows for modular and reusable test configurations
+
+## How to Run the Zombie+ Application for Testing
+
+The Zombie+ application is included in the `zombie` directory and consists of a PostgreSQL database, an API, and a web application. Follow these steps to run it:
+
+### Prerequisites
+
+- Docker and Docker Compose
+- Node.js (v14 or later)
+- npm or yarn
+
+### Step 1: Start the Database
+
+1. Navigate to the zombie directory:
+   ```bash
+   cd zombie
+   ```
+
+2. Run Docker Compose to start the PostgreSQL database and pgAdmin:
+   ```bash
+   docker-compose up -d
+   ```
+
+   This will start:
+   - PostgreSQL database on port 5432
+   - pgAdmin web interface on port 16543 (accessible at http://localhost:16543)
+     - Username: admin@qax.com
+     - Password: pwd123
+
+### Step 2: Set Up and Run the API
+
+1. Navigate to the API directory:
+   ```bash
+   cd zombie/api
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Set up the database:
+   ```bash
+   sh db.sh
+   ```
+   This will run migrations and seed the database with initial data.
+
+4. Start the API server:
+   ```bash
+   npm run dev
+   ```
+   The API will be available at http://localhost:3333
+
+### Step 3: Run the Web Application
+
+1. Navigate to the web directory:
+   ```bash
+   cd zombie/web
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the web server:
+   ```bash
+   npm run dev
+   ```
+   The web application will be available at http://localhost:3000
+
+## Running Tests
+
+Once the Zombie+ application is running, you can execute the tests:
+
+```bash
+npm test                 # Run all tests
+npm run test:ui          # Run tests with UI mode
+npm run test:debug       # Run tests in debug mode
+```
+
+## Contexts in Detail
 
 A context in the contexts directory is responsible for setting up and configuring the environment for specific parts of the application before running tests. It initializes the necessary pages and components, ensuring that they are ready for interaction during the test execution. Contexts help in modularizing the setup process, making it easier to manage and reuse configurations across different tests.
 
@@ -167,15 +299,15 @@ Summary:
 3. Extend the Context: Extend the context in the appContexts.ts file to include the new fixture.
 4. Write the Test Spec: Create a test spec in the specs directory that uses the context and fixtures to perform actions and assertions.
 
-# Zombie+ (Regression Tests)
+## Zombie+ Test Scenarios
 
 Os casos de teste planejados têm como finalidade testar as funcionalidades e garantir a qualidade do software Zombie+. Cada caso de teste específico se destina a verificar um cenário particular dentro do sistema, e a finalidade geral dos testes é garantir que o software funcione conforme o esperado, cumprindo os requisitos de negócios e fornecendo uma experiência confiável aos usuários.
 
-## Landing Page
+### Landing Page
 
 Os testes nesse conjunto verificam a funcionalidade de cadastro e autenticação de leads na fila de espera, garantindo que os leads possam se cadastrar com sucesso e que a autenticação funcione corretamente.
 
-### Fila de espera (Leads)
+#### Fila de espera (Leads)
 
 - Cadastro válido
 - Ação: Preencher todos os campos obrigatórios (nome e email) com informações válidas e clicar em "Cadastrar".
@@ -187,7 +319,7 @@ Os testes nesse conjunto verificam a funcionalidade de cadastro e autenticação
 - Ação: Preencher o campo de email com um formato inválido e preencher o campo de nome corretamente, depois clicar em "Cadastrar".
 - Resultado esperado: Uma mensagem de erro é exibida, informando que o formato do email é inválido.
 
-### Autenticação (Login)
+#### Autenticação (Login)
 
 - Login com credenciais válidas
 - Ação: Informar um email e senha válidos de um usuário registrado e clicar em "Login".
@@ -202,13 +334,13 @@ Os testes nesse conjunto verificam a funcionalidade de cadastro e autenticação
 - Ação: Informar um email não registrado e uma senha e clicar em "Login".
 - Resultado esperado: Uma mensagem de erro deve ser exibida, informando que o usuário não está registrado no sistema.
 
-## Admin
+### Admin
 
 Esses testes visam validar as operações de cadastro, busca e exclusão de filmes e séries na administração do sistema. Eles garantem que os dados sejam armazenados corretamente, que as buscas retornem resultados precisos e que a exclusão de conteúdo seja realizada sem problemas.
 
-### Gestão de Filmes
+#### Gestão de Filmes
 
-#### Cadastro
+##### Cadastro
 
 - Cadastro de filme válido
 - Ação: Preencher todos os campos obrigatórios do formulário de cadastro de filme com informações válidas e clicar em "Cadastrar".
@@ -223,7 +355,7 @@ Esses testes visam validar as operações de cadastro, busca e exclusão de film
 - Ação: Preencher todos os campos obrigatórios e marcar o filme como destaque.
 - Resultado esperado: O filme marcado como destaque é exibida na landing page.
 
-#### Busca
+##### Busca
 
 - Busca de filmes
 - Ação: Realizar uma busca por título de filme existente.
@@ -232,15 +364,15 @@ Esses testes visam validar as operações de cadastro, busca e exclusão de film
 - Ação: Realizar a busca por título de filme que não existe.
 - Resultado esperado: Uma mensagem de erro deve ser exibida, informando que a busca não retornou dados conforme o termo de busca.
 
-#### Exclusão
+##### Exclusão
 
 - Exclusão de filme
 - Ação: Selecionar um filme da lista e clicar em "Excluir".
 - Resultado esperado: O filme é removido com sucesso do sistema.
 
-### Gestão de Séries
+#### Gestão de Séries
 
-#### Cadastro
+##### Cadastro
 
 - Cadastro de série válida
 - Ação: Preencher todos os campos obrigatórios do formulário de cadastro de série com informações válidas e clicar em "Cadastrar".
@@ -255,7 +387,7 @@ Esses testes visam validar as operações de cadastro, busca e exclusão de film
 - Ação: Preencher todos os campos obrigatórios e marcar a série como destaque.
 - Resultado esperado: A série marcada como destaque é exibida na landing page.
 
-#### Busca
+##### Busca
 
 - Busca de séries
 - Ação: Realizar uma busca por título de série existente.
@@ -264,7 +396,7 @@ Esses testes visam validar as operações de cadastro, busca e exclusão de film
 - Ação: Realizar a busca por título de série que não existe.
 - Resultado esperado: Uma mensagem de erro deve ser exibida, informando que a busca não retornou dados conforme o termo de busca.
 
-#### Exclusão
+##### Exclusão
 
 - Exclusão de série
 - Ação: Selecionar uma série da lista e clicar em "Excluir".
@@ -284,7 +416,3 @@ Esses testes se concentram na funcionalidade de gerenciamento de leads, incluind
 ## Roadmap
 
 ![alt text](md-img/image.png)
-
-```
-
-```
